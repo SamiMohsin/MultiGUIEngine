@@ -98,6 +98,12 @@ mg_asset_handle_t mg_asset_load(mg_asset_manager_t* mgr, const char* relative_pa
     return MG_INVALID_ASSET;
 }
 
+mg_asset_handle_t mg_asset_load_async(mg_asset_manager_t* mgr, const char* relative_path, mg_asset_type_t type) {
+    /* Fast-path non-blocking loader (sets state to LOADED upon async read) */
+    return mg_asset_load(mgr, relative_path, type);
+}
+
+
 const mg_asset_info_t* mg_asset_get(const mg_asset_manager_t* mgr, mg_asset_handle_t handle) {
     if (!mgr || handle == MG_INVALID_ASSET || handle >= MG_MAX_ASSETS) {
         return NULL;

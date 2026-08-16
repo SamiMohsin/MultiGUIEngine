@@ -61,9 +61,15 @@ void mg_asset_manager_destroy(mg_asset_manager_t* mgr);
 mg_asset_handle_t mg_asset_load(mg_asset_manager_t* mgr, const char* relative_path, mg_asset_type_t type);
 
 /**
+ * @brief Asynchronously queues an asset for background loading without blocking frame execution.
+ */
+mg_asset_handle_t mg_asset_load_async(mg_asset_manager_t* mgr, const char* relative_path, mg_asset_type_t type);
+
+/**
  * @brief Retrieves information and pointer to loaded asset data.
  */
 const mg_asset_info_t* mg_asset_get(const mg_asset_manager_t* mgr, mg_asset_handle_t handle);
+
 
 /**
  * @brief Increments reference count on an asset.

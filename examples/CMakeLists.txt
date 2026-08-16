@@ -7,6 +7,8 @@ add_subdirectory(06_ai_npc_demo)
 add_subdirectory(07_material_gallery)
 add_subdirectory(08_full_game_demo)
 add_subdirectory(09_particles_and_fsm)
+add_subdirectory(10_async_asset_and_net)
+
 
 
 

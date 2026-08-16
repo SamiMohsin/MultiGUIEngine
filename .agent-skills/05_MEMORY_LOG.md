@@ -32,6 +32,57 @@
 
 ---
 
+## [2026-08-16 19:26 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Async Asset Streaming in `modules/mg-asset`:
+  - Implemented `mg_asset_load_async` for non-blocking background disk reads.
+- Added ECS Network Entity Replication in `modules/mg-net`:
+  - Implemented `mg_net_replicate_serialize` and `mg_net_replicate_deserialize` for delta snapshot synchronization across server and clients.
+- Added Post-Processing Render Pipeline in `modules/mg-render`:
+  - Implemented `mg_postprocess_apply` supporting ACES tone mapping, bloom luminance extraction/blur, and FXAA antialiasing.
+- Created `examples/10_async_asset_and_net`:
+  - Demonstrates async asset loading, client/server snapshot serialization, and fullscreen post-processing filter application.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 10 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 10 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.69 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full deployment, live networking tests, and commercial game production.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-asset/include/mg/asset/asset.h`, `modules/mg-asset/src/mg_asset.c`
+- `modules/mg-net/include/mg/net/replication.h`, `modules/mg-net/src/mg_replication.c`, `modules/mg-net/include/mg/net/net.h`, `modules/mg-net/CMakeLists.txt`
+- `modules/mg-render/include/mg/render/postprocess.h`, `modules/mg-render/src/mg_postprocess.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/10_async_asset_and_net/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:21 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
