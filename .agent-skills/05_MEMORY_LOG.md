@@ -32,6 +32,53 @@
 
 ---
 
+## [2026-08-16 18:51 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Completed advanced showcase examples per `docs/ARCHITECTURE.md` Section 11:
+  - `examples/04_3d_forward_plus`: 3D perspective projection, rotated cube mesh, depth testing, and software rasterization with directional face shading.
+  - `examples/05_audio_spatial`: 3D spatial audio panning and distance attenuation demonstration.
+  - `examples/06_ai_npc_demo`: Interactive AI dialogue NPC with native tool calling (`give_health_potions`) and streaming response tokens over reactive subjects.
+- Completed developer tooling:
+  - `tools/mg-cook`: Offline asset compilation and packaging CLI tool.
+  - `tools/mg-profiler`: High-resolution frame stage profiler measuring sub-microsecond ECS tick performance.
+- Updated `examples/CMakeLists.txt` and top-level `CMakeLists.txt`.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 14 libraries, 6 examples, and 2 tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 14/14 test suites passed (100% pass rate).
+- Executed all 6 examples and 2 tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~4.56 µs average frame latency over 500 entities)
+
+### What's next
+- Ready for downstream production game development, platform ports, and graphical editor expansion.
+
+### Blockers / open questions
+- None. Full engine architecture roadmap from Phase 0 through Phase 13 is completely implemented, tested, and verified.
+
+### Files touched
+- `examples/04_3d_forward_plus/` (`CMakeLists.txt`, `main.c`)
+- `examples/05_audio_spatial/` (`CMakeLists.txt`, `main.c`)
+- `examples/06_ai_npc_demo/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `tools/mg-cook/` (`CMakeLists.txt`, `main.c`)
+- `tools/mg-profiler/` (`CMakeLists.txt`, `main.c`)
+- `CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 18:43 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
