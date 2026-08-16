@@ -68,7 +68,9 @@ add_subdirectory(tools/mg-ai-core)
 #     add_subdirectory(ai-bridge/mg-ai-tools)
 # endif()
 add_subdirectory(tools/mg-cook)
+add_subdirectory(tools/mg-editor)
 add_subdirectory(tools/mg-profiler)
+
 
 if(MG_HEADLESS_TESTS)
     enable_testing()
