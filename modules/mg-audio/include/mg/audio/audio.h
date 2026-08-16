@@ -9,6 +9,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include "mg/audio/dsp.h"
+#include "mg/audio/spatial_fx.h"
+
 
 #ifdef __cplusplus
 extern "C" {
