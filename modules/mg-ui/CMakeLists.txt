@@ -4,7 +4,9 @@ add_library(mg-ui STATIC
     src/mg_layout.c
     src/mg_chart.c
     src/mg_nodegraph.c
+    src/mg_markdown.c
 )
+
 
 
 

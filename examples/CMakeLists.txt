@@ -34,6 +34,8 @@ add_subdirectory(33_compute_shader_gpu_acceleration)
 add_subdirectory(34_ragdoll_physics_and_constraints)
 add_subdirectory(35_octree_spatial_partitioning_and_culling)
 add_subdirectory(36_spatial_interest_management)
+add_subdirectory(37_rich_markdown_text_layout)
+
 
 
 

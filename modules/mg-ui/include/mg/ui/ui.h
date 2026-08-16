@@ -22,6 +22,8 @@ typedef struct mg_ui_context mg_ui_context_t;
 #include "mg/ui/layout.h"
 #include "mg/ui/chart.h"
 #include "mg/ui/nodegraph.h"
+#include "mg/ui/markdown.h"
+
 
 
 
