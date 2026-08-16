@@ -1,7 +1,9 @@
 add_library(mg-input STATIC
     src/mg_input.c
     src/mg_gamepad.c
+    src/mg_action_map.c
 )
+
 
 
 target_include_directories(mg-input PUBLIC

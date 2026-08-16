@@ -37,6 +37,8 @@ add_subdirectory(36_spatial_interest_management)
 add_subdirectory(37_rich_markdown_text_layout)
 add_subdirectory(38_audio_occlusion_and_lowpass)
 add_subdirectory(39_ssao_screen_space_ambient_occlusion)
+add_subdirectory(40_input_action_remapping_and_combos)
+
 
 
 
