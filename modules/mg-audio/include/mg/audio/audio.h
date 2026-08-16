@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include "mg/audio/dsp.h"
 
 #ifdef __cplusplus
 extern "C" {

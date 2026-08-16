@@ -32,6 +32,55 @@
 
 ---
 
+## [2026-08-16 19:30 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Flexbox GUI Auto-Layout Engine in `modules/mg-ui`:
+  - `include/mg/ui/layout.h` & `src/mg_layout.c`: Implemented `mg_flex_compute` supporting Row, Column, Wrap directions, item gap spacing, padding, and alignment bounding boxes.
+- Added Real-Time Audio DSP Filter Effects in `modules/mg-audio`:
+  - `include/mg/audio/dsp.h` & `src/mg_dsp.c`: Implemented Biquad Low-Pass, Biquad High-Pass, and Stereo Delay/Echo with feedback attenuation.
+- Created `examples/11_flex_ui_and_audio_dsp`:
+  - Demonstrates responsive Flexbox UI layout reflow across variable container widths and audio DSP filter sweeps.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 11 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 11 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~4.54 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full multi-platform deployment and commercial release.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-ui/include/mg/ui/layout.h`, `modules/mg-ui/src/mg_layout.c`, `modules/mg-ui/include/mg/ui/ui.h`, `modules/mg-ui/CMakeLists.txt`
+- `modules/mg-audio/include/mg/audio/dsp.h`, `modules/mg-audio/src/mg_dsp.c`, `modules/mg-audio/include/mg/audio/audio.h`, `modules/mg-audio/CMakeLists.txt`
+- `examples/11_flex_ui_and_audio_dsp/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:26 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

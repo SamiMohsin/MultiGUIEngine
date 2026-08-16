@@ -19,6 +19,8 @@ typedef struct mg_ui_context mg_ui_context_t;
 #include "mg/ui/theme.h"
 #include "mg/ui/icons.h"
 #include "mg/ui/material3.h"
+#include "mg/ui/layout.h"
+
 
 
 typedef struct mg_ui_style {

@@ -1,6 +1,8 @@
 add_library(mg-audio STATIC
     src/mg_audio.c
+    src/mg_dsp.c
 )
+
 
 target_include_directories(mg-audio PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
