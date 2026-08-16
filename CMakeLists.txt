@@ -47,10 +47,10 @@ add_subdirectory(core/mg-pal)
 add_subdirectory(core/mg-alloc)
 add_subdirectory(core/mg-math)
 add_subdirectory(core/mg-rx)
+add_subdirectory(modules/mg-render)
+add_subdirectory(modules/mg-scene)
 
-# --- Phase 3+ (uncomment as each module lands) ---
-# add_subdirectory(modules/mg-render)
-# add_subdirectory(modules/mg-scene)
+# --- Phase 5+ (uncomment as each module lands) ---
 # add_subdirectory(modules/mg-physics)
 # add_subdirectory(modules/mg-audio)
 # add_subdirectory(modules/mg-ui)
@@ -76,4 +76,7 @@ if(MG_HEADLESS_TESTS)
     add_subdirectory(tests)
 endif()
 
-message(STATUS "MultiGUIEngine Phase 0 configured. See docs/ARCHITECTURE.md for build order.")
+add_subdirectory(examples)
+
+message(STATUS "MultiGUIEngine Phase 3 configured. See docs/ARCHITECTURE.md for build order.")
+

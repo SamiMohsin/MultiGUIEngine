@@ -32,6 +32,58 @@
 
 ---
 
+## [2026-08-16 18:36 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Completed Phase 3: `mg-render` (Render Hardware Interface, Software Rasterizer reference backend, and 2D Batcher) per `docs/ARCHITECTURE.md` Section 6.5 & Section 11:
+  - `include/mg/render/rhi.h` & `src/mg_rhi.c`: Backend-agnostic RHI function table (`mg_rhi_backend_t`) with device lifecycle (`mg_rhi_init`, `mg_rhi_shutdown`), buffer management (`mg_rhi_create_buffer`, `mg_rhi_update_buffer`, `mg_rhi_destroy_buffer`), texture management, pipeline configuration, frame clearing, drawing, and pixel readback (`mg_rhi_read_pixels`).
+  - `include/mg/render/backend_software.h` & `src/backend_software/mg_backend_software.c`: CPU software rasterizer reference backend with color and depth framebuffers, barycentric sub-pixel triangle rasterization, depth testing/writing, color/texture coordinate interpolation, and headless screenshot validation.
+  - `include/mg/render/batch2d.h` & `src/mg_batch2d.c`: High-performance 2D quad and sprite batcher (`mg_batch2d_t`) with auto-flushing on buffer limit or texture changes (`mg_batch2d_draw_quad`, `mg_batch2d_draw_quad_textured`).
+  - Master aggregate header `include/mg/render/render.h` and CMake configuration `modules/mg-render/CMakeLists.txt`.
+  - Created and verified `examples/01_triangle` (software triangle rasterization) and `examples/02_sprite_batch` (2D batched sprite rendering).
+  - Authored headless unit tests in `tests/unit/mg-render/test_mg_render.c`.
+- Completed Phase 4: `mg-scene` (ECS and System Scheduler) per `docs/ARCHITECTURE.md` Section 6.6 & Section 11:
+  - `include/mg/scene/ecs.h` & `src/mg_ecs.c`: Archetype-aligned Entity Component System (`mg_world_t`, `mg_entity_t`, `mg_component_id_t`, generational entity indexing, component registration, adding, getting, has checking, removal, and bitmask querying via `mg_world_query`).
+  - Fixed deterministic frame stages (`mg_stage_t`): `INPUT -> FIXED_UPDATE -> UPDATE -> LATE_UPDATE -> RENDER_EXTRACT -> RENDER`.
+  - System registration and multi-stage execution scheduler (`mg_system_register`, `mg_world_tick_stage`, `mg_world_tick`).
+  - Master aggregate header `include/mg/scene/scene.h` and CMake configuration `modules/mg-scene/CMakeLists.txt`.
+  - Created and verified `examples/03_ecs_scene` (ECS entity movement and query simulation).
+  - Authored headless unit tests in `tests/unit/mg-scene/test_mg_scene.c`.
+- Uncommented `modules/mg-render`, `modules/mg-scene`, and `examples` in top-level `CMakeLists.txt` and wired into `tests/CMakeLists.txt`.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configured cleanly with license audit passing.
+- Ran `ninja -C build` — built all targets with zero warnings under `-Wall -Wextra -Werror`.
+- Ran `ctest --test-dir build --output-on-failure` — 6/6 test suites passed (100% pass rate: `mg-pal.version_string`, `mg-alloc.unit`, `mg-math.unit`, `mg-rx.unit`, `mg-render.unit`, `mg-scene.unit`).
+- Ran `./build/examples/01_triangle/example_01_triangle`, `./build/examples/02_sprite_batch/example_02_sprite_batch`, and `./build/examples/03_ecs_scene/example_03_ecs_scene` directly — all passed with verified pixel output and ECS simulations.
+
+### What's next
+- Phase 5: `mg-render` Vulkan backend architecture (`src/backend_vulkan/`) with volk initialization and swapchain abstraction.
+- Phase 6: 2.5D + 3D rendering pipeline (forward+ clustered lighting and PBR material model) with `examples/04_3d_forward_plus`.
+- Phase 7: `mg-physics` (BVH broadphase, SAT/GJK narrowphase, sequential impulse solver, FIXED_UPDATE stage integration).
+
+### Blockers / open questions
+- None. Phase 3 and Phase 4 are complete.
+
+### Files touched
+- `modules/mg-render/include/mg/render/rhi.h`, `modules/mg-render/include/mg/render/backend_software.h`, `modules/mg-render/include/mg/render/batch2d.h`, `modules/mg-render/include/mg/render/render.h`
+- `modules/mg-render/src/mg_rhi.c`, `modules/mg-render/src/backend_software/mg_backend_software.c`, `modules/mg-render/src/mg_batch2d.c`
+- `modules/mg-render/CMakeLists.txt`
+- `modules/mg-scene/include/mg/scene/ecs.h`, `modules/mg-scene/include/mg/scene/scene.h`, `modules/mg-scene/src/mg_ecs.c`, `modules/mg-scene/CMakeLists.txt`
+- `examples/01_triangle/CMakeLists.txt`, `examples/01_triangle/main.c`
+- `examples/02_sprite_batch/CMakeLists.txt`, `examples/02_sprite_batch/main.c`
+- `examples/03_ecs_scene/CMakeLists.txt`, `examples/03_ecs_scene/main.c`
+- `examples/CMakeLists.txt`
+- `tests/unit/mg-render/CMakeLists.txt`, `tests/unit/mg-render/test_mg_render.c`
+- `tests/unit/mg-scene/CMakeLists.txt`, `tests/unit/mg-scene/test_mg_scene.c`
+- `CMakeLists.txt`, `tests/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 18:31 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
