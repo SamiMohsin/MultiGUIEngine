@@ -32,6 +32,65 @@
 
 ---
 
+## [2026-08-17 00:08 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Enhanced Dynamic Plugin Host & Event Broadcast Subsystem in `plugins/plugin-host`:
+  - `include/mg/plugin/plugin.h` & `src/mg_plugin.c`: Added `mg_plugin_event_fn` event callback signatures to `mg_plugin_desc_t`, implemented `mg_plugin_manager_broadcast_event` (dispatching engine and gameplay events to all active loaded plugins), `mg_plugin_manager_count` (inspecting active plugin registry), and `mg_plugin_manager_get` (retrieving plugin manifests).
+- Created `examples/24_dynamic_plugin_lifecycle`:
+  - Demonstrates registering gameplay mod plugins (`SpeedBoosterMod`) and telemetry tracking plugins (`TelemetryTracker`), dispatching custom JSON engine events (`PLAYER_KILLED_BOSS`, `LEVEL_COMPLETED`), and cleanly shutting down all plugins with restored state.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 24 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 24 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.94 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for community modding SDKs, third-party analytics integrations, and live runtime extensions.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `plugins/plugin-host/include/mg/plugin/plugin.h`, `plugins/plugin-host/src/mg_plugin.c`
+- `examples/24_dynamic_plugin_lifecycle/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:06 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

@@ -71,3 +71,23 @@ void mg_plugin_manager_update(mg_plugin_manager_t* mgr, float dt) {
         }
     }
 }
+
+void mg_plugin_manager_broadcast_event(mg_plugin_manager_t* mgr, const char* event_name, void* event_data) {
+    if (!mgr || !event_name) return;
+
+    for (size_t i = 0; i < MG_MAX_PLUGINS; ++i) {
+        if (mgr->plugin_active[i] && mgr->plugins[i].on_event) {
+            mgr->plugins[i].on_event(mgr->world, event_name, event_data);
+        }
+    }
+}
+
+size_t mg_plugin_manager_count(const mg_plugin_manager_t* mgr) {
+    return mgr ? mgr->plugin_count : 0;
+}
+
+const mg_plugin_desc_t* mg_plugin_manager_get(const mg_plugin_manager_t* mgr, size_t index) {
+    if (!mgr || index >= MG_MAX_PLUGINS || !mgr->plugin_active[index]) return NULL;
+    return &mgr->plugins[index];
+}
+
