@@ -20,6 +20,8 @@ typedef struct mg_ui_context mg_ui_context_t;
 #include "mg/ui/icons.h"
 #include "mg/ui/material3.h"
 #include "mg/ui/layout.h"
+#include "mg/ui/chart.h"
+
 
 
 

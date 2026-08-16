@@ -2,7 +2,9 @@ add_library(mg-ui STATIC
     src/mg_ui.c
     src/mg_material3.c
     src/mg_layout.c
+    src/mg_chart.c
 )
+
 
 
 
