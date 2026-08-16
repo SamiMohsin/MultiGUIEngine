@@ -32,6 +32,75 @@
 
 ---
 
+## [2026-08-17 00:32 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added 3D Articulated Ragdoll Physics & Multi-Body Constraints Subsystem in `modules/mg-physics`:
+  - `include/mg/physics/ragdoll.h` & `src/mg_ragdoll.c`: Implemented `mg_ragdoll_init`, `mg_ragdoll_add_body` (rigid body limb nodes with mass and Verlet trajectory state), `mg_ragdoll_add_joint` (distance constraint joints linking articulated limbs), and `mg_ragdoll_step` (Position-Based Dynamics relaxation solver solving constraint systems over iterative passes).
+- Created `examples/34_ragdoll_physics_and_constraints`:
+  - Demonstrates building a 6-limb humanoid ragdoll (Fixed Torso, Head, Left/Right Arms, Left/Right Legs), simulating 60 physics frames in a gravity field, and verifying that all 5 joint distance constraints remain preserved within $< 0.01\%$ numerical tolerance.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 34 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 34 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `example_29_shadow_mapping_and_pcf` (Passed)
+  - `example_30_network_delta_compression` (Passed)
+  - `example_31_godmode_node_graph_canvas` (Passed)
+  - `example_32_procedural_audio_sfx` (Passed)
+  - `example_33_compute_shader_gpu_acceleration` (Passed)
+  - `example_34_ragdoll_physics_and_constraints` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.50 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full character death animations, vehicular suspensions, rope/cloth physics, and interactive physical game environments.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-physics/include/mg/physics/ragdoll.h`, `modules/mg-physics/src/mg_ragdoll.c`, `modules/mg-physics/include/mg/physics/physics.h`, `modules/mg-physics/CMakeLists.txt`
+- `examples/34_ragdoll_physics_and_constraints/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:30 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

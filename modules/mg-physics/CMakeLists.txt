@@ -2,7 +2,9 @@ add_library(mg-physics STATIC
     src/mg_physics.c
     src/mg_physics3d.c
     src/mg_ccd.c
+    src/mg_ragdoll.c
 )
+
 
 
 

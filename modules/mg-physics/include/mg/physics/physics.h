@@ -9,6 +9,8 @@
 #include "mg/rx/rx.h"
 #include "mg/physics/physics3d.h"
 #include "mg/physics/ccd.h"
+#include "mg/physics/ragdoll.h"
+
 #include <stdint.h>
 
 #include <stdbool.h>
