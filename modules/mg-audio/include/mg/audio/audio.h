@@ -12,6 +12,8 @@
 #include "mg/audio/spatial_fx.h"
 #include "mg/audio/music_sm.h"
 #include "mg/audio/sfx.h"
+#include "mg/audio/occlusion.h"
+
 
 
 

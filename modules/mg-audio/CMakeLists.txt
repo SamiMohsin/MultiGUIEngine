@@ -4,7 +4,9 @@ add_library(mg-audio STATIC
     src/mg_spatial_fx.c
     src/mg_music_sm.c
     src/mg_sfx.c
+    src/mg_occlusion.c
 )
+
 
 
 

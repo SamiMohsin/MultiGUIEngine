@@ -32,6 +32,79 @@
 
 ---
 
+## [2026-08-17 00:41 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Dynamic Audio Occlusion & Acoustic Wall Low-Pass Filter Subsystem in `modules/mg-audio`:
+  - `include/mg/audio/occlusion.h` & `src/mg_occlusion.c`: Implemented `mg_audio_calculate_occlusion` (modeling geometric acoustic obstruction through materials like Glass, Wood, and Concrete, computing dynamic low-pass cutoffs $20\text{kHz} \to 400\text{Hz}$ and volume dampening multipliers) and `mg_audio_apply_occlusion_filter` (single-pole low-pass filter buffer processor).
+- Created `examples/38_audio_occlusion_and_lowpass`:
+  - Demonstrates calculating occlusion through solid geometry and applying low-pass filtering to high-frequency tones, verifying realistic acoustic transmission loss ($74.9\%$ energy attenuation through $0.8\text{m}$ concrete).
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 38 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 38 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `example_29_shadow_mapping_and_pcf` (Passed)
+  - `example_30_network_delta_compression` (Passed)
+  - `example_31_godmode_node_graph_canvas` (Passed)
+  - `example_32_procedural_audio_sfx` (Passed)
+  - `example_33_compute_shader_gpu_acceleration` (Passed)
+  - `example_34_ragdoll_physics_and_constraints` (Passed)
+  - `example_35_octree_spatial_partitioning_and_culling` (Passed)
+  - `example_36_spatial_interest_management` (Passed)
+  - `example_37_rich_markdown_text_layout` (Passed)
+  - `example_38_audio_occlusion_and_lowpass` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.71 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for dynamic door opening acoustic leakage, multi-room acoustic portal diffraction, and realistic environmental audio simulation.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-audio/include/mg/audio/occlusion.h`, `modules/mg-audio/src/mg_occlusion.c`, `modules/mg-audio/include/mg/audio/audio.h`, `modules/mg-audio/CMakeLists.txt`
+- `examples/38_audio_occlusion_and_lowpass/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:39 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
