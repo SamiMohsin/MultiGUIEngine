@@ -5,6 +5,8 @@ add_subdirectory(04_3d_forward_plus)
 add_subdirectory(05_audio_spatial)
 add_subdirectory(06_ai_npc_demo)
 add_subdirectory(07_material_gallery)
+add_subdirectory(08_full_game_demo)
+
 
 
 

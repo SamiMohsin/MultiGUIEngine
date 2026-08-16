@@ -32,6 +32,47 @@
 
 ---
 
+## [2026-08-16 19:16 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Implemented `examples/08_full_game_demo` (*AstroGuard: Hybrid 2D/3D Space Defender*):
+  - Integrates all 14 MultiGUIEngine subsystem modules (Archetype ECS, rigid body physics & collision bounce, 2D batched starfield/laser rendering, multi-bus spatial audio playback with stereo panning, Google Material Design 3 UI HUD overlay, and AI copilot LLM tool calling).
+  - Added `examples/08_full_game_demo/CMakeLists.txt` and `main.c`.
+  - Wired into `examples/CMakeLists.txt`.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with license audit passing.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 8 examples, and 3 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 8 examples and 3 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed)
+  - `mg-editor` (Passed)
+
+### What's next
+- Ready for distribution, asset packaging, and commercial production releases.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `examples/08_full_game_demo/CMakeLists.txt`, `examples/08_full_game_demo/main.c`
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:13 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
