@@ -32,6 +32,53 @@
 
 ---
 
+## [2026-08-16 19:32 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Font Atlas & Text Rendering Engine in `modules/mg-render`:
+  - `include/mg/render/font.h` & `src/mg_font.c`: Implemented `mg_font_atlas_create_default`, `mg_font_draw_text`, and `mg_font_measure_text` for formatted monospace/bitmap typography and batch rendering.
+- Created `examples/12_text_rendering`:
+  - Demonstrates multi-line text bounds measurement and 2D quad batching of colored HUD typography.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 12 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 12 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.38 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full multi-platform deployment and commercial release.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/font.h`, `modules/mg-render/src/mg_font.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/12_text_rendering/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:30 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

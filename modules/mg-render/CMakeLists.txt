@@ -4,7 +4,9 @@ add_library(mg-render STATIC
     src/backend_software/mg_backend_software.c
     src/backend_vulkan/mg_backend_vulkan.c
     src/mg_postprocess.c
+    src/mg_font.c
 )
+
 
 
 target_include_directories(mg-render PUBLIC

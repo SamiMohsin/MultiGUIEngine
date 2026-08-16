@@ -10,6 +10,8 @@
 #include "mg/render/backend_vulkan.h"
 #include "mg/render/batch2d.h"
 #include "mg/render/postprocess.h"
+#include "mg/render/font.h"
+
 
 
 
