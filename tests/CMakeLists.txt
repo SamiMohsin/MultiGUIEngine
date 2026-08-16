@@ -15,4 +15,6 @@ add_subdirectory(unit/mg-net)
 add_subdirectory(unit/mg-asset)
 add_subdirectory(unit/plugin-host)
 add_subdirectory(unit/mg-ai-core)
+add_subdirectory(unit/mg-ui-m3)
+
 

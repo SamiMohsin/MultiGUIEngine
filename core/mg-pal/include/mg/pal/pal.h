@@ -11,5 +11,7 @@
 #include "mg/pal/thread.h"
 #include "mg/pal/fs.h"
 #include "mg/pal/window.h"
+#include "mg/pal/cpu.h"
+
 
 #endif /* MG_PAL_PAL_H */

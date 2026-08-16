@@ -1,6 +1,8 @@
 add_library(mg-ui STATIC
     src/mg_ui.c
+    src/mg_material3.c
 )
+
 
 target_include_directories(mg-ui PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include

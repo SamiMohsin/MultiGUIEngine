@@ -4,6 +4,7 @@ add_library(mg-pal STATIC
     src/mg_thread.c
     src/mg_fs.c
     src/mg_window.c
+    src/mg_cpu.c
 )
 
 target_include_directories(mg-pal PUBLIC

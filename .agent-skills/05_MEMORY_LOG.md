@@ -32,6 +32,59 @@
 
 ---
 
+## [2026-08-16 19:13 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added multi-architecture CPU hardware detection and performance scaling in `core/mg-pal`:
+  - `core/mg-pal/include/mg/pal/cpu.h` & `src/mg_cpu.c`: Runtime detection for x86_64, ARM64, ARM32, RISC-V, WASM, logical/physical core counts, SIMD extensions (AVX2, AVX512, NEON, SVE, RVV, WASM128), and dynamic performance tiers (`MG_PERF_TIER_EMBEDDED_LOW`, `MG_PERF_TIER_MOBILE`, `MG_PERF_TIER_DESKTOP_HIGH`).
+- Implemented complete Google Material Design 3 (M3) UI/UX component library in `modules/mg-ui`:
+  - `include/mg/ui/theme.h`: Standard Material 3 light and dark theme color schemes (Primary, Secondary, Tertiary, Surface containers, Outlines, Elevation).
+  - `include/mg/ui/icons.h`: Procedural Material Symbols vector glyph IDs.
+  - `include/mg/ui/material3.h` & `src/mg_material3.c`: Complete widget suite:
+    - Buttons: Filled, Outlined, Text, Tonal, Elevated, Icon buttons, FAB, Extended FAB, Segmented button.
+    - Controls: Checkboxes, Radio buttons, Switches, Continuous Sliders, Range Sliders.
+    - Inputs & Pickers: Text Field (Filled & Outlined), Search Bar, Date Picker, Time Picker.
+    - Navigation: Top App Bar, Bottom Navigation Bar, Navigation Rail, Tabs.
+    - Sheets & Overlays: Dialogs, Bottom Sheet, Side Sheet, Snackbars, Tooltips.
+    - Cards, Chips, Badges, Linear & Circular Progress Indicators, Dividers, List Items, Carousels.
+- Created `examples/07_material_gallery`: Full Material 3 component showcase.
+- Created `tests/unit/mg-ui-m3`: Headless unit test suite covering M3 theme switching, widget states, and multi-arch CPU detection.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with license audit passing.
+- Ran `ninja -C build` — compiled all 15 libraries/tests and 7 examples with zero warnings under `-Wall -Wextra -Werror`.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 7 examples and 3 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed)
+  - `mg-editor` (Passed)
+
+### What's next
+- Ready for expanded asset cooking pipelines, additional custom shaders, and cross-compilation builds for Android/iOS/Embedded targets.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `core/mg-pal/include/mg/pal/cpu.h`, `core/mg-pal/src/mg_cpu.c`, `core/mg-pal/include/mg/pal/pal.h`, `core/mg-pal/CMakeLists.txt`
+- `modules/mg-ui/include/mg/ui/theme.h`, `modules/mg-ui/include/mg/ui/icons.h`, `modules/mg-ui/include/mg/ui/material3.h`, `modules/mg-ui/src/mg_material3.c`, `modules/mg-ui/include/mg/ui/ui.h`, `modules/mg-ui/CMakeLists.txt`
+- `examples/07_material_gallery/` (`main.c`, `CMakeLists.txt`)
+- `tests/unit/mg-ui-m3/` (`test_mg_ui_m3.c`, `CMakeLists.txt`)
+- `examples/CMakeLists.txt`, `tests/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 18:54 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

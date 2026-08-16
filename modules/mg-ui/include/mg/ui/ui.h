@@ -16,6 +16,11 @@ extern "C" {
 
 typedef struct mg_ui_context mg_ui_context_t;
 
+#include "mg/ui/theme.h"
+#include "mg/ui/icons.h"
+#include "mg/ui/material3.h"
+
+
 typedef struct mg_ui_style {
     mg_color_t background_color;
     mg_color_t text_color;
