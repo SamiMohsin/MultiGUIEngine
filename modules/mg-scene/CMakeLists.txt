@@ -4,7 +4,9 @@ add_library(mg-scene STATIC
     src/mg_hierarchy.c
     src/mg_prefab.c
     src/mg_skeleton.c
+    src/mg_octree.c
 )
+
 
 
 

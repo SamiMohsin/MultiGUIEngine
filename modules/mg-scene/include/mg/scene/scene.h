@@ -10,8 +10,10 @@
 #include "mg/scene/hierarchy.h"
 #include "mg/scene/prefab.h"
 #include "mg/scene/skeleton.h"
+#include "mg/scene/octree.h"
 
 #endif /* MG_SCENE_SCENE_H */
+
 
 
 
