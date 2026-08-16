@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  license-audit:
+    name: License Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify THIRD_PARTY_LICENSES.md covers all vendored code
+        run: |
+          sudo apt-get update && sudo apt-get install -y cmake ninja-build
+          mkdir build && cd build
+          cmake -G Ninja -DMG_HEADLESS_TESTS=OFF ..
+          # LicenseAudit.cmake runs at configure time and fails the step
+          # if any third_party/ entry is undocumented.
+
+  build:
+    name: Build & Test (${{ matrix.os }}, ${{ matrix.build_type }})
+    needs: license-audit
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        build_type: [Debug, Release]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build tools (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build
+
+      - name: Install build tools (macOS)
+        if: runner.os == 'macOS'
+        run: brew install cmake ninja
+
+      - name: Install build tools (Windows)
+        if: runner.os == 'Windows'
+        run: choco install cmake ninja -y
+
+      - name: Configure
+        run: cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DMG_HEADLESS_TESTS=ON
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test (headless)
+        working-directory: build
+        run: ctest --output-on-failure
+
+  # Placeholder — enabled once Phase 14 (platform ports) lands.
+  # android-build:
+  #   name: Android NDK Build
+  #   runs-on: ubuntu-latest
+  #   steps: []

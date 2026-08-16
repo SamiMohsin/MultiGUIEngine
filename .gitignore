@@ -1,0 +1,17 @@
+build/
+build-*/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+compile_commands.json
+.cache/
+.vs/
+.vscode/
+*.user
+CMakeFiles/
+CMakeCache.txt
