@@ -1,6 +1,8 @@
 add_library(mg-ai-core STATIC
     src/mg_ai.c
+    src/mg_agent.c
 )
+
 
 target_include_directories(mg-ai-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include

@@ -6,7 +6,9 @@
 #define MG_AI_AI_H
 
 #include "mg/rx/rx.h"
+#include "mg/ai/agent.h"
 #include <stdint.h>
+
 #include <stdbool.h>
 
 #ifdef __cplusplus

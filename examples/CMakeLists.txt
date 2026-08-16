@@ -14,6 +14,8 @@ add_subdirectory(13_physics_3d_and_raycast)
 add_subdirectory(14_scene_graph_hierarchy)
 add_subdirectory(15_m3_art_and_theme_showcase)
 add_subdirectory(16_gamepad_and_touch_gestures)
+add_subdirectory(17_ai_function_calling_agent)
+
 
 
 

@@ -32,6 +32,58 @@
 
 ---
 
+## [2026-08-16 19:46 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Autonomous AI Agent, Multi-Turn Chat History Buffer & Tool Dispatch Engine in `tools/mg-ai-core`:
+  - `include/mg/ai/agent.h` & `src/mg_agent.c`: Implemented `mg_ai_agent_create`, `mg_ai_agent_register_tool`, `mg_ai_agent_add_message`, and `mg_ai_agent_step` supporting structured message roles (`SYSTEM`, `USER`, `ASSISTANT`, `TOOL`), sliding window context history, and native C tool callback routing.
+- Created `examples/17_ai_function_calling_agent`:
+  - Demonstrates starship AI tactical assistant executing structured native C tool callbacks (`query_shields`, `recharge_shields`), appending tool outputs to multi-turn conversation memory, and generating formatted responses.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 17 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 17 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~4.52 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for live LLM inference, autonomous game NPCs, and production releases.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `tools/mg-ai-core/include/mg/ai/agent.h`, `tools/mg-ai-core/src/mg_agent.c`, `tools/mg-ai-core/include/mg/ai/ai.h`, `tools/mg-ai-core/CMakeLists.txt`
+- `examples/17_ai_function_calling_agent/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:43 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
