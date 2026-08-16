@@ -70,6 +70,8 @@ add_subdirectory(tools/mg-ai-core)
 add_subdirectory(tools/mg-cook)
 add_subdirectory(tools/mg-editor)
 add_subdirectory(tools/mg-profiler)
+add_subdirectory(tools/mg-pack)
+
 
 
 if(MG_HEADLESS_TESTS)

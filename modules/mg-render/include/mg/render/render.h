@@ -7,6 +7,8 @@
 
 #include "mg/render/rhi.h"
 #include "mg/render/backend_software.h"
+#include "mg/render/backend_vulkan.h"
 #include "mg/render/batch2d.h"
+
 
 #endif /* MG_RENDER_RENDER_H */

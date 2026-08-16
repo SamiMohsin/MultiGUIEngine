@@ -32,6 +32,59 @@
 
 ---
 
+## [2026-08-16 19:21 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Vulkan Modern Hardware RHI Backend interface and device context bindings:
+  - `modules/mg-render/include/mg/render/backend_vulkan.h` & `src/backend_vulkan/mg_backend_vulkan.c`.
+  - Added pipeline state creation, validation layer hooks, and SPIR-V bytecode shader module loaders.
+- Implemented Multi-Platform Deployment Packager tool:
+  - `tools/mg-pack/main.c` & `CMakeLists.txt`: Generates deployment structures and metadata for WebAssembly (HTML5 canvas shell + JS loader), Android (NativeActivity + AndroidManifest.xml), iOS/macOS (Info.plist bundle), and Embedded Linux.
+- Added Advanced Gameplay Subsystems in `modules/mg-scene`:
+  - `include/mg/scene/gameplay.h` & `src/mg_gameplay.c`:
+    - Hierarchical Finite State Machine (FSM) with entry/update/exit state callbacks.
+    - A* Obstacle-Aware Grid Pathfinding algorithm.
+    - Real-time particle emitter (`mg_particle_emitter_t`) with velocity, gravity integration, lifetime decay, and burst emission.
+- Created `examples/09_particles_and_fsm`: Showcase demo exhibiting particle fountain explosions, A* grid obstacle navigation, and character FSM state transitions.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with license audit passing.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 9 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 9 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.29 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed, generated WASM, Android, iOS bundles)
+
+### What's next
+- Ready for full multi-platform releases, platform store deployments, and commercial production.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/backend_vulkan.h`, `modules/mg-render/src/backend_vulkan/mg_backend_vulkan.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `tools/mg-pack/CMakeLists.txt`, `tools/mg-pack/main.c`
+- `modules/mg-scene/include/mg/scene/gameplay.h`, `modules/mg-scene/src/mg_gameplay.c`, `modules/mg-scene/include/mg/scene/scene.h`, `modules/mg-scene/CMakeLists.txt`
+- `examples/09_particles_and_fsm/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`, `CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:16 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

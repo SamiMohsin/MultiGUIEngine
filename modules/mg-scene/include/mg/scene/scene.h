@@ -6,5 +6,7 @@
 #define MG_SCENE_SCENE_H
 
 #include "mg/scene/ecs.h"
+#include "mg/scene/gameplay.h"
 
 #endif /* MG_SCENE_SCENE_H */
+
