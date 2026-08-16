@@ -32,6 +32,66 @@
 
 ---
 
+## [2026-08-17 00:10 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added HDR Bloom Filter, Bright-Pass Extraction & Gaussian Glow Post-Processing Subsystem in `modules/mg-render`:
+  - `include/mg/render/bloom.h` & `src/mg_bloom.c`: Implemented `mg_bloom_extract_bright_pass` (extracting pixels exceeding luminance threshold $Y = 0.2126R + 0.7152G + 0.0722B$), `mg_bloom_gaussian_blur` (5-tap two-pass separable Gaussian convolution for glow expansion), and `mg_bloom_composite` (additive glow compositing with saturation clamping).
+- Created `examples/25_hdr_bloom_and_glow`:
+  - Demonstrates rendering high-intensity emissive neon geometry against a dark ambient background, isolating bright-pass pixels, applying separable Gaussian blur, and compositing radiant bloom halos.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 25 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 25 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.84 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for cinematic AAA lighting, neon laser weapons, futuristic sci-fi cockpits, and next-gen visual styling.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/bloom.h`, `modules/mg-render/src/mg_bloom.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/25_hdr_bloom_and_glow/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:08 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

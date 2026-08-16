@@ -12,6 +12,8 @@
 #include "mg/render/postprocess.h"
 #include "mg/render/font.h"
 #include "mg/render/skybox.h"
+#include "mg/render/bloom.h"
 
 #endif /* MG_RENDER_RENDER_H */
+
 

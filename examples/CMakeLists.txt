@@ -22,6 +22,8 @@ add_subdirectory(21_network_prediction_and_snapshots)
 add_subdirectory(22_ccd_continuous_collision_3d)
 add_subdirectory(23_asset_bundles_and_hot_reload)
 add_subdirectory(24_dynamic_plugin_lifecycle)
+add_subdirectory(25_hdr_bloom_and_glow)
+
 
 
 

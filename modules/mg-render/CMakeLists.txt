@@ -6,7 +6,9 @@ add_library(mg-render STATIC
     src/mg_postprocess.c
     src/mg_font.c
     src/mg_skybox.c
+    src/mg_bloom.c
 )
+
 
 
 
