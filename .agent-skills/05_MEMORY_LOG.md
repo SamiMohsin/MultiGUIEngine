@@ -32,6 +32,80 @@
 
 ---
 
+## [2026-08-17 00:43 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Screen-Space Ambient Occlusion (SSAO) & Bilateral Contact Shadow Engine Subsystem in `modules/mg-render`:
+  - `include/mg/render/ssao.h` & `src/mg_ssao.c`: Implemented `mg_ssao_generate_kernel` (32-sample hemisphere kernel with golden angle distribution and quadratic scale falloff), `mg_ssao_compute_pass` (depth/normal buffer sampling estimating contact shadows in crevices and corners), and `mg_ssao_blur_pass` (depth-aware bilateral filter preserving silhouette edges while smoothing high-frequency noise).
+- Created `examples/39_ssao_screen_space_ambient_occlusion`:
+  - Demonstrates executing an SSAO pass over a synthesized scene G-buffer containing geometric wall recesses and floor planes, verifying occlusion factors and visual depth perception.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 39 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 39 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `example_29_shadow_mapping_and_pcf` (Passed)
+  - `example_30_network_delta_compression` (Passed)
+  - `example_31_godmode_node_graph_canvas` (Passed)
+  - `example_32_procedural_audio_sfx` (Passed)
+  - `example_33_compute_shader_gpu_acceleration` (Passed)
+  - `example_34_ragdoll_physics_and_constraints` (Passed)
+  - `example_35_octree_spatial_partitioning_and_culling` (Passed)
+  - `example_36_spatial_interest_management` (Passed)
+  - `example_37_rich_markdown_text_layout` (Passed)
+  - `example_38_audio_occlusion_and_lowpass` (Passed)
+  - `example_39_ssao_screen_space_ambient_occlusion` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.53 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for screen-space reflections (SSR), atmospheric volumetric fog scattering, and depth-of-field post-processing.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/ssao.h`, `modules/mg-render/src/mg_ssao.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/39_ssao_screen_space_ambient_occlusion/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:41 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
