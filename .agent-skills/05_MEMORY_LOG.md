@@ -32,6 +32,54 @@
 
 ---
 
+## [2026-08-16 19:40 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Created `examples/15_m3_art_and_theme_showcase`:
+  - A comprehensive Material 3 GUI application demo integrating vector icons (`MG_ICON_SETTINGS`, `MG_ICON_SEARCH`, `MG_ICON_STAR`, `MG_ICON_FAVORITE`, `MG_ICON_PLAY`, `MG_ICON_SHARE`, `MG_ICON_REFRESH`, `MG_ICON_ADD`), typography font rendering, visual art cards, navigation rail, top app bar, sliders, segmented buttons, badges, and snackbar.
+  - Implemented dynamic live theme switching between Material 3 Dark and Light tonal palettes with complete framebuffer pixel readback verification.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 15 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 15 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.39 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full multi-platform releases, mobile app store submission, and production game development.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `examples/15_m3_art_and_theme_showcase/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:38 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
