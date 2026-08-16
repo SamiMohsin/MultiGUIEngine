@@ -10,6 +10,8 @@
 #include <stddef.h>
 #include "mg/audio/dsp.h"
 #include "mg/audio/spatial_fx.h"
+#include "mg/audio/music_sm.h"
+
 
 
 #ifdef __cplusplus
