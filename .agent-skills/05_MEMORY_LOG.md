@@ -32,6 +32,77 @@
 
 ---
 
+## [2026-08-17 00:25 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Visual Node Graph Canvas & Cubic Bezier Wiring Subsystem in `modules/mg-ui` adhering to `.agent-skills/03_UIUX_CREATIVITY_GODMODE.md`:
+  - `include/mg/ui/nodegraph.h` & `src/mg_nodegraph.c`: Implemented `mg_nodegraph_init`, `mg_nodegraph_add_node`, `mg_nodegraph_add_pin`, `mg_nodegraph_connect`, and `mg_nodegraph_render` featuring the Oscilloscope house style (`#0d0f14` near-black surface, $16\text{ px}$ subtle technical grid, `#c8f135` lime and `#7c5cff` violet node category headers, and smooth cubic Bezier link curves $B(t)$).
+- Created `examples/31_godmode_node_graph_canvas`:
+  - Demonstrates an interactive 3-node PBR Shader Graph (Texture Sampler in Lime $\to$ PBR Math in Violet $\to$ Surface Output in Teal) with tangent-based cubic Bezier wiring and pixel verification.
+
+### Design Rationale (`.agent-skills/03_UIUX_CREATIVITY_GODMODE.md` compliance)
+- **Focal Point**: Central PBR Lighting Math Node highlighted with Violet (`#7c5cff`) header and vibrant Lime (`#c8f135`) wire connections.
+- **Reading Order**: Standard left-to-right technical dataflow: Input Samplers $\to$ Computational Shading Math $\to$ Surface Output Target.
+- **Aesthetic Direction**: Dark "oscilloscope" precision instrument styling with technical snap-to-grid alignment and WCAG AA contrast compliance.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 31 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 31 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `example_29_shadow_mapping_and_pcf` (Passed)
+  - `example_30_network_delta_compression` (Passed)
+  - `example_31_godmode_node_graph_canvas` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.32 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for integration into the visual shader graph in `tools/mg-editor`, behavior tree AI wiring, and visual audio DSP routing.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-ui/include/mg/ui/nodegraph.h`, `modules/mg-ui/src/mg_nodegraph.c`, `modules/mg-ui/include/mg/ui/ui.h`, `modules/mg-ui/CMakeLists.txt`
+- `examples/31_godmode_node_graph_canvas/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:22 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
