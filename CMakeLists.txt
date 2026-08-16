@@ -44,10 +44,10 @@ include(LicenseAudit)
 # of Done in docs/ARCHITECTURE.md Section 12.
 # ---------------------------------------------------------------------------
 add_subdirectory(core/mg-pal)
+add_subdirectory(core/mg-alloc)
+add_subdirectory(core/mg-math)
 
-# --- Phase 1+ (uncomment as each module lands) ---
-# add_subdirectory(core/mg-alloc)
-# add_subdirectory(core/mg-math)
+# --- Phase 2+ (uncomment as each module lands) ---
 # add_subdirectory(core/mg-rx)
 # add_subdirectory(modules/mg-render)
 # add_subdirectory(modules/mg-scene)
