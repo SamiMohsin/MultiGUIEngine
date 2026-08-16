@@ -32,6 +32,62 @@
 
 ---
 
+## [2026-08-16 19:57 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Client-Side Prediction, Server Reconciliation & Snapshot Interpolation Engine in `modules/mg-net`:
+  - `include/mg/net/prediction.h` & `src/mg_prediction.c`: Implemented `mg_net_predict_movement` (local client frame simulation based on movement vectors, speed, and delta time), `mg_net_reconcile_state` (authoritative server snapshot correction with deterministic replay of unacknowledged input command sequences), and `mg_net_interpolate_snapshots` (smooth remote proxy snapshot interpolation).
+- Created `examples/21_network_prediction_and_snapshots`:
+  - Demonstrates local client prediction over 3 input commands ($x = 4.80$), receiving an authoritative server correction ($x = 1.50$ at sequence 1) and replaying unacked commands 2 & 3 ($x = 4.70$), and remote proxy interpolation.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 21 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 21 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.28 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for fast-paced competitive multiplayer games, low-latency netcode, and production deployments.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-net/include/mg/net/prediction.h`, `modules/mg-net/src/mg_prediction.c`, `modules/mg-net/include/mg/net/net.h`, `modules/mg-net/CMakeLists.txt`
+- `examples/21_network_prediction_and_snapshots/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:54 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
