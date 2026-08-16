@@ -3,7 +3,9 @@ add_library(mg-net STATIC
     src/mg_replication.c
     src/mg_prediction.c
     src/mg_bitstream.c
+    src/mg_interest.c
 )
+
 
 
 target_include_directories(mg-net PUBLIC

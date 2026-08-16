@@ -87,8 +87,10 @@ void mg_net_disconnect(mg_net_host_t* host, mg_peer_handle_t peer);
 #include "mg/net/replication.h"
 #include "mg/net/prediction.h"
 #include "mg/net/bitstream.h"
+#include "mg/net/interest.h"
 
 #endif /* MG_NET_NET_H */
+
 
 
 

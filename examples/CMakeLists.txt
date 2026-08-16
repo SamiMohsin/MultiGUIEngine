@@ -33,6 +33,8 @@ add_subdirectory(32_procedural_audio_sfx)
 add_subdirectory(33_compute_shader_gpu_acceleration)
 add_subdirectory(34_ragdoll_physics_and_constraints)
 add_subdirectory(35_octree_spatial_partitioning_and_culling)
+add_subdirectory(36_spatial_interest_management)
+
 
 
 
