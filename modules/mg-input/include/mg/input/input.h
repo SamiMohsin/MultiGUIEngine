@@ -7,6 +7,7 @@
 
 #include "mg/pal/window.h"
 #include "mg/rx/rx.h"
+#include "mg/input/gamepad.h"
 #include <stdbool.h>
 #include <stdint.h>
 

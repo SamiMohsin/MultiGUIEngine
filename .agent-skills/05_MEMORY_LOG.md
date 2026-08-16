@@ -32,6 +32,57 @@
 
 ---
 
+## [2026-08-16 19:43 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Gamepad, Virtual Touch Joystick & Gesture Recognition Engine in `modules/mg-input`:
+  - `include/mg/input/gamepad.h` & `src/mg_gamepad.c`: Implemented `mg_gamepad_filter_deadzone` (radial deadzone compensation), `mg_virtual_joystick_init` and `mg_virtual_joystick_update` (on-screen mobile touch joystick with clamped radius), and `mg_gesture_recognize_swipe` (Tap, Swipe Left/Right/Up/Down, Pinch).
+- Created `examples/16_gamepad_and_touch_gestures`:
+  - Demonstrates radial deadzone stick filtering, on-screen virtual joystick touch tracking, and swipe/tap gesture recognition.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 16 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 16 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.23 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full mobile/desktop cross-platform controller deployment and touch games.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-input/include/mg/input/gamepad.h`, `modules/mg-input/src/mg_gamepad.c`, `modules/mg-input/include/mg/input/input.h`, `modules/mg-input/CMakeLists.txt`
+- `examples/16_gamepad_and_touch_gestures/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:40 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did
