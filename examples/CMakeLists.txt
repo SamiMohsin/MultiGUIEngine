@@ -30,6 +30,8 @@ add_subdirectory(29_shadow_mapping_and_pcf)
 add_subdirectory(30_network_delta_compression)
 add_subdirectory(31_godmode_node_graph_canvas)
 add_subdirectory(32_procedural_audio_sfx)
+add_subdirectory(33_compute_shader_gpu_acceleration)
+
 
 
 

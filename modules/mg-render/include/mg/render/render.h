@@ -14,8 +14,10 @@
 #include "mg/render/skybox.h"
 #include "mg/render/bloom.h"
 #include "mg/render/shadow.h"
+#include "mg/render/compute.h"
 
 #endif /* MG_RENDER_RENDER_H */
+
 
 
 

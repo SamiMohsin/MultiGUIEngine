@@ -8,7 +8,9 @@ add_library(mg-render STATIC
     src/mg_skybox.c
     src/mg_bloom.c
     src/mg_shadow.c
+    src/mg_compute.c
 )
+
 
 
 
