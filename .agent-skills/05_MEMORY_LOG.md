@@ -32,6 +32,61 @@
 
 ---
 
+## [2026-08-16 19:54 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Scene Prefab Entity Instantiation & JSON Persistence Engine in `modules/mg-scene`:
+  - `include/mg/scene/prefab.h` & `src/mg_prefab.c`: Implemented `mg_prefab_instantiate` (instantiating entities from blueprint templates with position offsets), `mg_scene_save_to_json` (serializing alive entities, component masks, positions, and velocities into human-readable JSON), and `mg_scene_load_from_json` (parsing JSON scene files and rebuilding active world state).
+- Created `examples/20_scene_prefabs_and_json`:
+  - Demonstrates spawning enemy drone and asteroid hazard prefabs into World 1, serializing the world to JSON, creating a blank World 2, and deserializing the state with 100% position/velocity fidelity.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 20 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 20 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.41 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for visual scene saving in `mg-editor`, level design toolchains, and multi-level games.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-scene/include/mg/scene/prefab.h`, `modules/mg-scene/src/mg_prefab.c`, `modules/mg-scene/include/mg/scene/scene.h`, `modules/mg-scene/CMakeLists.txt`
+- `examples/20_scene_prefabs_and_json/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:50 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

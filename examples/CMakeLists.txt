@@ -17,6 +17,8 @@ add_subdirectory(16_gamepad_and_touch_gestures)
 add_subdirectory(17_ai_function_calling_agent)
 add_subdirectory(18_pbr_skybox_and_ibl)
 add_subdirectory(19_doppler_audio_and_reverb)
+add_subdirectory(20_scene_prefabs_and_json)
+
 
 
 
