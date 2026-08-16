@@ -32,6 +32,69 @@
 
 ---
 
+## [2026-08-17 00:18 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added 3D Skeletal Animation & Linear Blend Skinning (LBS) Subsystem in `modules/mg-scene`:
+  - `include/mg/scene/skeleton.h` & `src/mg_skeleton.c`: Implemented `mg_skeleton_init`, `mg_skeleton_add_bone` (hierarchical bone tree with automatic global transform and inverse bind pose evaluation), `mg_skeleton_set_local_transform` (applying dynamic keyframe rotations/translations), `mg_skeleton_update_palette` (generating the 32-bone skinning matrix palette $M_{skin} = M_{global} \times M_{inv\_bind}$), and `mg_skin_vertex_linear_blend` (4-weight Linear Blend Skinning).
+- Created `examples/28_skeletal_animation_and_skinning`:
+  - Demonstrates constructing a 3-joint character armature (Root -> Shoulder -> Forearm), evaluating identity skinning in bind pose, applying a $90^\circ$ Z-axis rotation to the shoulder, and verifying deformed vertex displacement under 2-bone linear blend skinning ($x = -5.00, y = 10.00$).
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 28 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 28 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.46 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for rigged character humanoid models, glTF 2.0 skinning imports, and fluid character animations.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-scene/include/mg/scene/skeleton.h`, `modules/mg-scene/src/mg_skeleton.c`, `modules/mg-scene/include/mg/scene/scene.h`, `modules/mg-scene/CMakeLists.txt`
+- `examples/28_skeletal_animation_and_skinning/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:15 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

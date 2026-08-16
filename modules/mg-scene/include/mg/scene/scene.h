@@ -9,7 +9,9 @@
 #include "mg/scene/gameplay.h"
 #include "mg/scene/hierarchy.h"
 #include "mg/scene/prefab.h"
+#include "mg/scene/skeleton.h"
 
 #endif /* MG_SCENE_SCENE_H */
+
 
 
