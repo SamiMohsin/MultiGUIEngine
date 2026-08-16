@@ -85,4 +85,7 @@ void mg_asset_release(mg_asset_manager_t* mgr, mg_asset_handle_t handle);
 }
 #endif
 
+#include "mg/asset/bundle.h"
+
 #endif /* MG_ASSET_ASSET_H */
+

@@ -20,6 +20,8 @@ add_subdirectory(19_doppler_audio_and_reverb)
 add_subdirectory(20_scene_prefabs_and_json)
 add_subdirectory(21_network_prediction_and_snapshots)
 add_subdirectory(22_ccd_continuous_collision_3d)
+add_subdirectory(23_asset_bundles_and_hot_reload)
+
 
 
 
