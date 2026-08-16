@@ -1,7 +1,9 @@
 add_library(mg-scene STATIC
     src/mg_ecs.c
     src/mg_gameplay.c
+    src/mg_hierarchy.c
 )
+
 
 
 target_include_directories(mg-scene PUBLIC

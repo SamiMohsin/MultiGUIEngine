@@ -7,6 +7,8 @@
 
 #include "mg/scene/ecs.h"
 #include "mg/scene/gameplay.h"
+#include "mg/scene/hierarchy.h"
+
 
 #endif /* MG_SCENE_SCENE_H */
 

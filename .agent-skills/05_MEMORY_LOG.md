@@ -32,6 +32,55 @@
 
 ---
 
+## [2026-08-16 19:38 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Scene Transform Node Graph Hierarchy Engine in `modules/mg-scene`:
+  - `include/mg/scene/hierarchy.h` & `src/mg_hierarchy.c`: Implemented `mg_scene_node_create`, `mg_scene_node_destroy`, `mg_scene_node_add_child`, and recursive `mg_scene_node_update_transforms` with local TRS matrix generation and world matrix hierarchy concatenation.
+- Created `examples/14_scene_graph_hierarchy`:
+  - Demonstrates multi-tier Solar System node graph hierarchy (Sun -> Earth -> Moon) and verified recursive world matrix propagation.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 14 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 14 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.74 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full deployment, live production releases, and cross-platform packaging.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-scene/include/mg/scene/hierarchy.h`, `modules/mg-scene/src/mg_hierarchy.c`, `modules/mg-scene/include/mg/scene/scene.h`, `modules/mg-scene/CMakeLists.txt`
+- `examples/14_scene_graph_hierarchy/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:35 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

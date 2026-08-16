@@ -11,6 +11,8 @@ add_subdirectory(10_async_asset_and_net)
 add_subdirectory(11_flex_ui_and_audio_dsp)
 add_subdirectory(12_text_rendering)
 add_subdirectory(13_physics_3d_and_raycast)
+add_subdirectory(14_scene_graph_hierarchy)
+
 
 
 
