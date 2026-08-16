@@ -6,8 +6,10 @@
 #define MG_PHYSICS_PHYSICS_H
 
 #include "mg/math/math.h"
-#include <stdbool.h>
+#include "mg/rx/rx.h"
+#include "mg/physics/physics3d.h"
 #include <stdint.h>
+#include <stdbool.h>
 #include <stddef.h>
 
 #ifdef __cplusplus

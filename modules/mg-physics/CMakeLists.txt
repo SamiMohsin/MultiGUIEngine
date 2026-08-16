@@ -1,6 +1,8 @@
 add_library(mg-physics STATIC
     src/mg_physics.c
+    src/mg_physics3d.c
 )
+
 
 target_include_directories(mg-physics PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
