@@ -32,6 +32,59 @@
 
 ---
 
+## [2026-08-16 19:48 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added Skybox Cubemap Environment Mapping & PBR Image-Based Lighting (IBL) Engine in `modules/mg-render`:
+  - `include/mg/render/skybox.h` & `src/mg_skybox.c`: Implemented `mg_cubemap_create`, `mg_cubemap_destroy`, `mg_skybox_generate_procedural` (Rayleigh/Mie atmospheric gradient + sun disc), `mg_cubemap_sample` (6-face directional projection), and `mg_pbr_ibl_evaluate` (split-sum diffuse irradiance and roughness-attenuated specular Fresnel-Schlick IBL reflections).
+- Created `examples/18_pbr_skybox_and_ibl`:
+  - Demonstrates procedural atmospheric HDRI skybox generation and PBR IBL evaluation across metallic (gold) and rough plastic materials.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 18 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 18 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~3.65 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for full 3D visual environments, realistic metallic surfaces, and production games.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/skybox.h`, `modules/mg-render/src/mg_skybox.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/18_pbr_skybox_and_ibl/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 19:46 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

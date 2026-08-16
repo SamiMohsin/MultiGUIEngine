@@ -11,8 +11,7 @@
 #include "mg/render/batch2d.h"
 #include "mg/render/postprocess.h"
 #include "mg/render/font.h"
-
-
-
+#include "mg/render/skybox.h"
 
 #endif /* MG_RENDER_RENDER_H */
+

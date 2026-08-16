@@ -5,7 +5,9 @@ add_library(mg-render STATIC
     src/backend_vulkan/mg_backend_vulkan.c
     src/mg_postprocess.c
     src/mg_font.c
+    src/mg_skybox.c
 )
+
 
 
 
