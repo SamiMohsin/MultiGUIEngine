@@ -13,7 +13,9 @@
 #include "mg/render/font.h"
 #include "mg/render/skybox.h"
 #include "mg/render/bloom.h"
+#include "mg/render/shadow.h"
 
 #endif /* MG_RENDER_RENDER_H */
+
 
 

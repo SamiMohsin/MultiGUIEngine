@@ -32,6 +32,70 @@
 
 ---
 
+## [2026-08-17 00:20 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Added 3D Directional Light Shadow Mapping & Percentage-Closer Filtering (PCF) Subsystem in `modules/mg-render`:
+  - `include/mg/render/shadow.h` & `src/mg_shadow.c`: Implemented `mg_shadow_map_create`, `mg_shadow_map_destroy`, `mg_shadow_map_clear`, `mg_shadow_map_set_light_matrix`, `mg_shadow_rasterize_box` (rasterizes 3D bounding boxes into the float depth buffer with light view-projection transformation), and `mg_shadow_sample_pcf` ($3 \times 3$ kernel soft shadow sampling with slope-scale depth bias).
+- Created `examples/29_shadow_mapping_and_pcf`:
+  - Demonstrates configuring an orthographic directional sunlight, rasterizing an occluding cube caster into a $128 \times 128$ depth buffer, and sampling receiver points across the ground plane with $3 \times 3$ PCF to verify shadowed ($0.0$), lit ($1.0$), and soft penumbra regions.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configure passed with clean license audit.
+- Ran `ninja -C build` — compiled all 15 libraries/tests, 29 examples, and 4 developer tools under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 15/15 test suites passed (100% pass rate).
+- Executed all 29 examples and 4 developer tools directly:
+  - `example_01_triangle` (Passed)
+  - `example_02_sprite_batch` (Passed)
+  - `example_03_ecs_scene` (Passed)
+  - `example_04_3d_forward_plus` (Passed)
+  - `example_05_audio_spatial` (Passed)
+  - `example_06_ai_npc_demo` (Passed)
+  - `example_07_material_gallery` (Passed)
+  - `example_08_full_game_demo` (Passed)
+  - `example_09_particles_and_fsm` (Passed)
+  - `example_10_async_asset_and_net` (Passed)
+  - `example_11_flex_ui_and_audio_dsp` (Passed)
+  - `example_12_text_rendering` (Passed)
+  - `example_13_physics_3d_and_raycast` (Passed)
+  - `example_14_scene_graph_hierarchy` (Passed)
+  - `example_15_m3_art_and_theme_showcase` (Passed)
+  - `example_16_gamepad_and_touch_gestures` (Passed)
+  - `example_17_ai_function_calling_agent` (Passed)
+  - `example_18_pbr_skybox_and_ibl` (Passed)
+  - `example_19_doppler_audio_and_reverb` (Passed)
+  - `example_20_scene_prefabs_and_json` (Passed)
+  - `example_21_network_prediction_and_snapshots` (Passed)
+  - `example_22_ccd_continuous_collision_3d` (Passed)
+  - `example_23_asset_bundles_and_hot_reload` (Passed)
+  - `example_24_dynamic_plugin_lifecycle` (Passed)
+  - `example_25_hdr_bloom_and_glow` (Passed)
+  - `example_26_dynamic_music_crossfading` (Passed)
+  - `example_27_data_viz_charts` (Passed)
+  - `example_28_skeletal_animation_and_skinning` (Passed)
+  - `example_29_shadow_mapping_and_pcf` (Passed)
+  - `mg-cook` (Passed)
+  - `mg-profiler` (Passed, ~5.40 µs average frame latency)
+  - `mg-editor` (Passed)
+  - `mg-pack` (Passed)
+
+### What's next
+- Ready for cascaded shadow maps (CSM) across massive outdoor terrains, point light omnidirectional cubemap shadows, and forward+ clustered lighting integration.
+
+### Blockers / open questions
+- None.
+
+### Files touched
+- `modules/mg-render/include/mg/render/shadow.h`, `modules/mg-render/src/mg_shadow.c`, `modules/mg-render/include/mg/render/render.h`, `modules/mg-render/CMakeLists.txt`
+- `examples/29_shadow_mapping_and_pcf/` (`CMakeLists.txt`, `main.c`)
+- `examples/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-17 00:18 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

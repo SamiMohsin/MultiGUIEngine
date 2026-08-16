@@ -26,6 +26,8 @@ add_subdirectory(25_hdr_bloom_and_glow)
 add_subdirectory(26_dynamic_music_crossfading)
 add_subdirectory(27_data_viz_charts)
 add_subdirectory(28_skeletal_animation_and_skinning)
+add_subdirectory(29_shadow_mapping_and_pcf)
+
 
 
 
