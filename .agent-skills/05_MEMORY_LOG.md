@@ -30,6 +30,55 @@
 - 
 ```
 
+---
+
+## [2026-08-16 18:31 UTC] — Agent: Gemini 3.7 Flash
+
+### What I did
+- Completed Phase 2: `mg-rx` (Reactive Core) per `docs/ARCHITECTURE.md` Section 6.2 and `.agent-skills/02_REACTIVE_LIBRARY_RULES.md`:
+  - `include/mg/rx/subscription.h` & `src/mg_subscription.c`: Subscription lifecycle handle (`mg_subscription_t`, `mg_subscription_create`, `mg_subscription_dispose`, `mg_subscription_is_active`).
+  - `include/mg/rx/observable.h` & `src/mg_observable.c`: Observable pipeline base structure (`mg_observable_t`, `mg_observable_subscribe`, `mg_observable_destroy`).
+  - `include/mg/rx/subject.h` & `src/mg_subject.c`: Hot Subject (`mg_subject_t`, `mg_subject_create`, `mg_subject_destroy`, `mg_subject_subscribe`, `mg_subject_emit`, `mg_subject_as_observable`, `mg_subject_subscriber_count`).
+  - `include/mg/rx/subject.h` & `src/mg_behavior_subject.c`: BehaviorSubject (`mg_behavior_subject_t`, `mg_behavior_subject_create`, `mg_behavior_subject_destroy`, `mg_behavior_subject_subscribe`, `mg_behavior_subject_emit`, `mg_behavior_subject_get_value`, `mg_behavior_subject_as_observable`).
+  - `include/mg/rx/operators.h` & `src/mg_operators.c`: Implemented all specified reactive operators:
+    - `mg_rx_map`: Stream value transformation.
+    - `mg_rx_filter`: Boolean predicate filtering.
+    - `mg_rx_throttle_ms`: Emission rate throttling.
+    - `mg_rx_debounce_ms`: Emission silence window debounce.
+    - `mg_rx_merge`: Multiple stream merging.
+    - `mg_rx_combine_latest`: Pairwise latest-value combination.
+    - `mg_rx_scan`: Running state accumulation.
+  - `include/mg/rx/bus.h` & `src/mg_bus.c`: Thread-safe cross-thread event bus (`mg_rx_bus_t`) bridging producer background threads via lock-free `mg_ring_buffer_t` with main-thread frame-synchronous draining (`mg_rx_bus_drain`).
+  - Master aggregate header `include/mg/rx/rx.h` and CMake configuration `core/mg-rx/CMakeLists.txt`.
+- Uncommented `core/mg-rx` in top-level `CMakeLists.txt` and added `unit/mg-rx` in `tests/CMakeLists.txt`.
+- Authored comprehensive headless unit tests in `tests/unit/mg-rx/test_mg_rx.c`.
+
+### What I verified
+- Ran `cmake -B build -G Ninja -DMG_HEADLESS_TESTS=ON` — configured cleanly with license audit passing.
+- Ran `ninja -C build` — compiled all targets under `-Wall -Wextra -Werror` with zero warnings.
+- Ran `ctest --test-dir build --output-on-failure` — 4/4 test suites passed (100% pass rate: `mg-pal.version_string`, `mg-alloc.unit`, `mg-math.unit`, `mg-rx.unit`).
+- Ran `./build/tests/unit/mg-rx/test_mg_rx` directly — verified `mg_subject`, `mg_behavior_subject`, `mg_rx_map`, `mg_rx_filter`, `mg_rx_merge`, `mg_rx_combine_latest`, `mg_rx_scan`, and multi-threaded `mg_rx_bus` producer-to-main drain.
+
+### What's next
+- Begin Phase 3 per `docs/ARCHITECTURE.md` Section 11 & Section 6.5: Implement `mg-render` Render Hardware Interface (RHI) and CPU Software Rasterizer backend (`backend_software` reference implementation) plus 2D batched sprite/quad renderer.
+- Create `examples/01_triangle` and `examples/02_sprite_batch`.
+
+### Blockers / open questions
+- None. Phase 2 is complete.
+
+### Files touched
+- `core/mg-rx/include/mg/rx/subscription.h`, `core/mg-rx/include/mg/rx/observable.h`, `core/mg-rx/include/mg/rx/subject.h`, `core/mg-rx/include/mg/rx/operators.h`, `core/mg-rx/include/mg/rx/bus.h`, `core/mg-rx/include/mg/rx/rx.h`
+- `core/mg-rx/src/mg_subscription.c`, `core/mg-rx/src/mg_observable.c`, `core/mg-rx/src/mg_subject.c`, `core/mg-rx/src/mg_behavior_subject.c`, `core/mg-rx/src/mg_operators.c`, `core/mg-rx/src/mg_bus.c`
+- `core/mg-rx/CMakeLists.txt`
+- `tests/unit/mg-rx/CMakeLists.txt`, `tests/unit/mg-rx/test_mg_rx.c`
+- `CMakeLists.txt`, `tests/CMakeLists.txt`
+- `.agent-skills/05_MEMORY_LOG.md`
+
+### ADRs added/changed
+- None in this step.
+
+---
+
 ## [2026-08-16 18:27 UTC] — Agent: Gemini 3.7 Flash
 
 ### What I did

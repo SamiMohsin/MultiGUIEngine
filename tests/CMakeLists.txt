@@ -4,3 +4,4 @@
 add_subdirectory(unit/mg-pal)
 add_subdirectory(unit/mg-alloc)
 add_subdirectory(unit/mg-math)
+add_subdirectory(unit/mg-rx)

@@ -46,9 +46,9 @@ include(LicenseAudit)
 add_subdirectory(core/mg-pal)
 add_subdirectory(core/mg-alloc)
 add_subdirectory(core/mg-math)
+add_subdirectory(core/mg-rx)
 
-# --- Phase 2+ (uncomment as each module lands) ---
-# add_subdirectory(core/mg-rx)
+# --- Phase 3+ (uncomment as each module lands) ---
 # add_subdirectory(modules/mg-render)
 # add_subdirectory(modules/mg-scene)
 # add_subdirectory(modules/mg-physics)
